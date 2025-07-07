@@ -1,15 +1,14 @@
-# TurboNet Landing Page
+# TurboNet - أسرع إنترنت في البلاد
 
-A modern, responsive Arabic RTL landing page for TurboNet internet service provider built with Flask and Tailwind CSS.
+موقع شركة TurboNet لخدمات الإنترنت في أم الفحم.
 
-## Features
+## المميزات
 
-- 🌐 **Arabic RTL Layout**: Fully optimized for Arabic language with right-to-left text direction
-- 📱 **Responsive Design**: Mobile-first approach with modern, clean aesthetics
-- ⚡ **Fast & Lightweight**: Built with Tailwind CSS utility-first framework
-- 🎨 **Modern UI/UX**: Creative design with smooth animations and hover effects
-- 🚀 **Flask Backend**: Simple and efficient Python web framework
-- 💰 **Pricing Display**: Clear presentation of internet packages and special offers
+- تصميم متجاوب يعمل على جميع الأجهزة
+- واجهة مستخدم حديثة وجذابة
+- دعم كامل للغة العربية
+- قائمة تنقل محمولة محسنة
+- تأثيرات بصرية سلسة
 
 ## Project Structure
 
@@ -57,13 +56,41 @@ The landing page displays the following internet packages:
   - Rental: 20 شيقل/month
   - Purchase: 500 شيقل (3-year warranty)
 
-## Technologies Used
+## التقنيات المستخدمة
 
-- **Backend**: Flask (Python)
-- **Frontend**: HTML5, Tailwind CSS, JavaScript
-- **Fonts**: Cairo (Arabic-friendly)
-- **Icons**: Heroicons (via Tailwind)
-- **Color Scheme**: Gold (#FFD101) accent with dark theme
+- HTML5
+- CSS3 مع Tailwind CSS
+- JavaScript (Vanilla)
+- تصميم متجاوب
+
+## النشر على GitHub Pages
+
+### الخطوات:
+1. **ارفع الملفات إلى GitHub:**
+   ```bash
+   git add .
+   git commit -m "Deploy TurboNet website"
+   git push origin main
+   ```
+
+2. **تفعيل GitHub Pages:**
+   - اذهب إلى إعدادات المستودع (Repository Settings)
+   - انتقل إلى قسم "Pages" في الشريط الجانبي
+   - في "Source"، اختر "GitHub Actions"
+   - سيتم نشر الموقع تلقائياً عند كل push
+
+3. **رابط الموقع:**
+   سيكون الموقع متاحاً على: `https://[username].github.io/[repository-name]`
+
+### ملاحظات مهمة:
+- تأكد من أن اسم الفرع الرئيسي هو `main`
+- قد يستغرق النشر بضع دقائق
+- يمكنك متابعة حالة النشر في تبويب "Actions"
+
+## الاتصال
+- الهاتف: 073-322-8300
+- الموقع: أم الفحم، حي الشاغور
+- خدمة 24/7
 
 ## Design Features
 
@@ -91,6 +118,5 @@ To customize the design:
 - Safari
 - Edge
 
-## License
-
-This project is created for TurboNet internet services.
+---
+© 2024 TurboNet. جميع الحقوق محفوظة.
