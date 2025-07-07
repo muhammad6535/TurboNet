@@ -189,7 +189,7 @@
 
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay" class="mobile-menu-overlay md:hidden"></div>
-        
+
         <!-- Mobile Menu -->
         <div id="mobile-menu"
             class="mobile-menu md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl border-l-4 border-turbo-gold">
@@ -198,15 +198,20 @@
                 <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-black p-6 relative overflow-hidden">
                     <!-- Background Pattern -->
                     <div class="absolute inset-0 opacity-10">
-                        <div class="absolute top-0 left-0 w-32 h-32 bg-turbo-gold rounded-full -translate-x-16 -translate-y-16"></div>
-                        <div class="absolute bottom-0 right-0 w-24 h-24 bg-turbo-gold rounded-full translate-x-12 translate-y-12"></div>
+                        <div
+                            class="absolute top-0 left-0 w-32 h-32 bg-turbo-gold rounded-full -translate-x-16 -translate-y-16">
+                        </div>
+                        <div
+                            class="absolute bottom-0 right-0 w-24 h-24 bg-turbo-gold rounded-full translate-x-12 translate-y-12">
+                        </div>
                     </div>
-                    
+
                     <div class="relative z-10">
                         <div class="flex justify-between items-center mb-4">
                             <!-- Logo with better contrast -->
                             <div class="bg-white rounded-lg p-2 shadow-lg">
-                                <img src="{{ url_for('static', filename='logo.png') }}" alt="TurboNet Logo" class="h-10 w-auto">
+                                <img src="{{ url_for('static', filename='logo.png') }}" alt="TurboNet Logo"
+                                    class="h-10 w-auto">
                             </div>
                             <button id="close-menu-btn"
                                 class="text-turbo-gold hover:text-yellow-400 transition-all bg-white bg-opacity-10 backdrop-blur-sm rounded-full p-2 hover:bg-opacity-20">
@@ -684,7 +689,7 @@
             <div class="bg-turbo-gold text-black rounded-2xl p-8 mb-12 text-center">
                 <h3 class="text-3xl font-black mb-4">اتصل الآن للاشتراك!</h3>
                 <div class="text-6xl font-black mb-4">*5287</div>
-                <p class="text-lg font-bold">اتصل من أي خط  مجاناً</p>
+                <p class="text-lg font-bold">اتصل من أي خط مجاناً</p>
                 <p class="text-sm mt-2">خدمة عملاء 24/7 • استشارة مجانية • عروض حصرية</p>
             </div>
 
@@ -751,7 +756,7 @@
                     <img src="{{ url_for('static', filename='logo.png') }}" alt="TurboNet Logo"
                         class="h-16 w-auto mb-6">
                     <p class="text-gray-600 mb-6 leading-relaxed text-lg">
-                        نحن في TurboNet نقدم أفضل خدمات الإنترنت في   بتقنيات متطورة وأسعار منافسة.
+                        نحن في TurboNet نقدم أفضل خدمات الإنترنت في بتقنيات متطورة وأسعار منافسة.
                         انضم إلى آلاف العملاء الراضين واستمتع بتجربة إنترنت لا مثيل لها.
                     </p>
                     <div class="flex gap-4">
@@ -877,7 +882,7 @@
         });
 
         // Close menu with escape key
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
                 closeMobileMenu();
             }
@@ -885,7 +890,7 @@
 
         // Prevent menu from closing when clicking inside it
         if (mobileMenu) {
-            mobileMenu.addEventListener('click', function(e) {
+            mobileMenu.addEventListener('click', function (e) {
                 e.stopPropagation();
             });
         }
