@@ -1,41 +1,94 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TurboNet - أسرع إنترنت في البلاد</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'turbo-gold': '#FFD700',
-                        'turbo-dark': '#1a1a1a',
-                        'turbo-gray': '#f8f9fa'
-                    },
-                    fontFamily: {
-                        'arabic': ['Tajawal', 'Arial', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Tajawal', Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
         }
-
-        .hero-bg {
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
             position: relative;
+            overflow: hidden;
         }
-
-        .hero-bg::before {
+        
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
@@ -45,815 +98,565 @@
             background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
             opacity: 0.3;
         }
-
-        /* Mobile menu styles */
-        .mobile-menu {
-            position: fixed !important;
-            top: 0 !important;
-            right: 0 !important;
-            height: 100vh !important;
-            width: 320px !important;
-            z-index: 9999 !important;
-            background: white !important;
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
-
-        .mobile-menu.active {
-            transform: translateX(0);
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
-
-        .mobile-menu-overlay {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
-            background: rgba(0, 0, 0, 0.5) !important;
-            z-index: 9998 !important;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
-
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        
+        .cta-button {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
-
-        .hamburger {
-            transition: all 0.3s ease;
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
         }
-
-        .hamburger.active {
-            transform: rotate(90deg);
+        
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: white;
         }
-
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Plans Section */
+        .plans {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .plan-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .plan-card.featured {
+            border: 3px solid #FFD700;
+            transform: scale(1.05);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .plan-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .plan-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-period {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #FFD700;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #FFD700;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            color: #999;
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid,
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .plan-card.featured {
+                transform: none;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
         /* Animations */
-        @keyframes pulse-gold {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(255, 215, 0, 0);
-            }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
         }
-
-        .pulse-gold {
-            animation: pulse-gold 2s infinite;
-        }
-
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .smooth-scroll {
-            scroll-behavior: smooth;
-        }
-
-        .loaded {
-            opacity: 1;
+        
+        .pulse {
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
-
-<body class="font-arabic bg-white smooth-scroll">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg py-4 sticky top-0 z-50 transition-all duration-300">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <div class="flex items-center space-x-reverse space-x-4">
-                <img src="static/logo.png" alt="TurboNet Logo" class="h-14 w-auto">
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <span>⚡</span>
+                <span>TurboNet</span>
             </div>
-            <div class="hidden md:flex space-x-reverse space-x-8">
-                <a href="#home"
-                    class="text-turbo-dark hover:text-turbo-gold transition-colors font-bold text-lg">الرئيسية</a>
-                <a href="#about" class="text-turbo-dark hover:text-turbo-gold transition-colors font-bold text-lg">من
-                    نحن</a>
-                <a href="#packages"
-                    class="text-turbo-dark hover:text-turbo-gold transition-colors font-bold text-lg">الباقات</a>
-                <a href="#contact"
-                    class="text-turbo-dark hover:text-turbo-gold transition-colors font-bold text-lg">اتصل بنا</a>
-            </div>
-            <button id="mobile-menu-btn" class="md:hidden text-turbo-gold hamburger">
-                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
-                    </path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu-overlay" class="mobile-menu-overlay md:hidden"></div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="mobile-menu md:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-2xl border-l-4 border-turbo-gold">
-            <div class="h-full flex flex-col">
-                <!-- Header -->
-                <div class="bg-gradient-to-br from-gray-900 via-gray-800 to-black p-6 relative overflow-hidden">
-                    <!-- Background Pattern -->
-                    <div class="absolute inset-0 opacity-10">
-                        <div class="absolute top-0 left-0 w-32 h-32 bg-turbo-gold rounded-full -translate-x-16 -translate-y-16"></div>
-                        <div class="absolute bottom-0 right-0 w-24 h-24 bg-turbo-gold rounded-full translate-x-12 translate-y-12"></div>
-                    </div>
-                    
-                    <div class="relative z-10">
-                        <div class="flex justify-between items-center mb-4">
-                            <!-- Logo with better contrast -->
-                            <div class="bg-white rounded-lg p-2 shadow-lg">
-                                <img src="static/logo.png" alt="TurboNet Logo" class="h-10 w-auto">
-                            </div>
-                            <button id="close-menu-btn"
-                                class="text-turbo-gold hover:text-yellow-400 transition-all bg-white bg-opacity-10 backdrop-blur-sm rounded-full p-2 hover:bg-opacity-20">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <div class="text-center">
-                            <h3 class="text-white font-bold text-xl mb-1 tracking-wide">TurboNet</h3>
-                            <p class="text-turbo-gold text-sm font-medium">أسرع إنترنت في البلاد </p>
-                            <div class="w-16 h-1 bg-turbo-gold rounded-full mx-auto mt-2"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Navigation -->
-                <div class="flex-1 p-6">
-                    <nav class="space-y-2">
-                        <a href="#home"
-                            class="flex items-center gap-3 text-gray-800 hover:text-turbo-gold hover:bg-yellow-50 transition-all font-bold text-lg py-4 px-4 rounded-lg group">
-                            <span class="text-turbo-gold group-hover:scale-110 transition-transform">🏠</span>
-                            الرئيسية
-                        </a>
-                        <a href="#about"
-                            class="flex items-center gap-3 text-gray-800 hover:text-turbo-gold hover:bg-yellow-50 transition-all font-bold text-lg py-4 px-4 rounded-lg group">
-                            <span class="text-turbo-gold group-hover:scale-110 transition-transform">ℹ️</span>
-                            من نحن
-                        </a>
-                        <a href="#packages"
-                            class="flex items-center gap-3 text-gray-800 hover:text-turbo-gold hover:bg-yellow-50 transition-all font-bold text-lg py-4 px-4 rounded-lg group">
-                            <span class="text-turbo-gold group-hover:scale-110 transition-transform">📦</span>
-                            الباقات
-                        </a>
-                        <a href="#contact"
-                            class="flex items-center gap-3 text-gray-800 hover:text-turbo-gold hover:bg-yellow-50 transition-all font-bold text-lg py-4 px-4 rounded-lg group">
-                            <span class="text-turbo-gold group-hover:scale-110 transition-transform">📞</span>
-                            اتصل بنا
-                        </a>
-                    </nav>
-                </div>
-
-                <!-- Footer -->
-                <div class="p-6 bg-gray-50 border-t">
-                    <a href="#packages"
-                        class="block w-full bg-turbo-gold text-turbo-dark px-6 py-4 rounded-xl font-bold text-lg hover:bg-yellow-400 transition-all transform hover:scale-105 shadow-lg mb-4 text-center">
-                        🚀 اشترك الآن
-                    </a>
-                    <div class="text-center">
-                        <p class="text-gray-600 text-sm mb-2">اتصل بنا مباشرة</p>
-                        <a href="tel:073-322-8300"
-                            class="text-turbo-gold font-bold text-xl hover:text-yellow-600 transition-colors">073-322-8300</a>
-                    </div>
-                    <div class="flex justify-center gap-3 mt-4">
-                        <a href="https://www.facebook.com/profile.php?id=61557782815016&sk=photos" target="_blank"
-                            class="w-10 h-10 bg-turbo-gold rounded-full flex items-center justify-center text-black hover:bg-yellow-400 transition-all hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/turbonet2024?igsh=Z2kyazdxZ3ptNTVs" target="_blank"
-                            class="w-10 h-10 bg-turbo-gold rounded-full flex items-center justify-center text-black hover:bg-yellow-400 transition-all hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                     d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
-                             </svg>
-                         </a>
-                         <a href="https://wa.me/+972733228300" target="_blank"
-                             class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center text-black hover:bg-yellow-400 transition-all hover:scale-110"
-                             title="WhatsApp">
-                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                 <path
-                                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488" />
-                             </svg>
-                         </a>
-                     </div>
-                 </div>
-                 <div>
-                     <h3 class="text-xl font-bold mb-6 text-turbo-dark">خدماتنا</h3>
-                     <ul class="space-y-3">
-                         <li><a href="#packages" class="text-gray-600 hover:text-turbo-gold transition-colors">باقات الإنترنت</a></li>
-                         <li><a href="#contact" class="text-gray-600 hover:text-turbo-gold transition-colors">التركيب</a></li>
-                         <li><a href="#contact" class="text-gray-600 hover:text-turbo-gold transition-colors">الدعم الفني</a></li>
-                         <li><a href="#contact" class="text-gray-600 hover:text-turbo-gold transition-colors">خدمة العملاء</a></li>
-                     </ul>
-                 </div>
-                 <div>
-                     <h3 class="text-xl font-bold mb-6 text-turbo-dark">روابط سريعة</h3>
-                     <ul class="space-y-3">
-                         <li><a href="#home" class="text-gray-600 hover:text-turbo-gold transition-colors">الرئيسية</a></li>
-                         <li><a href="#about" class="text-gray-600 hover:text-turbo-gold transition-colors">من نحن</a></li>
-                         <li><a href="#packages" class="text-gray-600 hover:text-turbo-gold transition-colors">الباقات</a></li>
-                         <li><a href="#contact" class="text-gray-600 hover:text-turbo-gold transition-colors">اتصل بنا</a></li>
-                     </ul>
-                 </div>
-                 <div>
-                     <h3 class="text-xl font-bold mb-6 text-turbo-dark">تواصل معنا</h3>
-                     <div class="space-y-3">
-                         <p class="text-gray-600 flex items-center gap-2">
-                             <span class="text-turbo-gold">📞</span>
-                             073-322-8300
-                         </p>
-                         <p class="text-gray-600 flex items-center gap-2">
-                             <span class="text-turbo-gold">📍</span>
-                             أم الفحم، حي الشاغور
-                         </p>
-                         <p class="text-gray-600 flex items-center gap-2">
-                             <span class="text-turbo-gold">⏰</span>
-                             خدمة 24/7
-                         </p>
-                     </div>
-                 </div>
-             </div>
-             <div class="border-t border-gray-300 mt-12 pt-8 text-center">
-                 <p class="text-gray-600">
-                     &copy; 2024 TurboNet. جميع الحقوق محفوظة.
-                 </p>
-             </div>
-         </div>
-     </footer>
-
-     <!-- JavaScript -->
-     <script>
-         // Mobile menu functionality with improved scroll management
-         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-         const mobileMenu = document.getElementById('mobile-menu');
-         const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-         const closeMobileMenuBtn = document.getElementById('close-menu-btn');
-         const hamburger = document.querySelector('.hamburger');
-         let scrollPosition = 0;
-
-         function openMobileMenu() {
-             // Store current scroll position
-             scrollPosition = window.pageYOffset;
-             
-             // Apply fixed positioning to prevent scroll
-             document.body.style.position = 'fixed';
-             document.body.style.top = `-${scrollPosition}px`;
-             document.body.style.width = '100%';
-             
-             mobileMenu.classList.add('active');
-             mobileMenuOverlay.classList.add('active');
-             hamburger.classList.add('active');
-         }
-
-         function closeMobileMenu() {
-             mobileMenu.classList.remove('active');
-             mobileMenuOverlay.classList.remove('active');
-             hamburger.classList.remove('active');
-             
-             // Restore scroll position
-             document.body.style.position = '';
-             document.body.style.top = '';
-             document.body.style.width = '';
-             window.scrollTo(0, scrollPosition);
-         }
-
-         mobileMenuBtn.addEventListener('click', openMobileMenu);
-         closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
-         mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-
-         // Close mobile menu when clicking on navigation links
-         const mobileNavLinks = mobileMenu.querySelectorAll('a[href^="#"]');
-         mobileNavLinks.forEach(link => {
-             link.addEventListener('click', closeMobileMenu);
-         });
-
-         // Smooth scrolling for anchor links
-         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-             anchor.addEventListener('click', function (e) {
-                 e.preventDefault();
-                 const target = document.querySelector(this.getAttribute('href'));
-                 if (target) {
-                     target.scrollIntoView({
-                         behavior: 'smooth',
-                         block: 'start'
-                     });
-                 }
-             });
-         });
-
-         // Navbar scroll effect
-         window.addEventListener('scroll', function() {
-             const navbar = document.querySelector('nav');
-             if (window.scrollY > 50) {
-                 navbar.classList.add('shadow-xl');
-             } else {
-                 navbar.classList.remove('shadow-xl');
-             }
-         });
-
-         // Page load animation
-         window.addEventListener('load', function() {
-             document.body.classList.add('loaded');
-         });
-     </script>
-
- </body>
-
- </html>072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z" />
-                            </svg>
-                        </a>
-                        <a href="https://wa.me/+972733228300" target="_blank"
-                            class="w-10 h-10 bg-turbo-gold rounded-full flex items-center justify-center text-black hover:bg-yellow-400 transition-all hover:scale-110">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#plans">الباقات</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg">
-        <!-- Animated Background Elements -->
-        <div class="absolute inset-0 z-1">
-            <div
-                class="absolute top-16 right-8 w-16 h-16 border-2 border-turbo-gold opacity-15 rounded-full animate-pulse">
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>TurboNet</h1>
+                <p>تقنية فائقة السرعة، عابر لحدود الزمان والمكان</p>
+                <a href="#plans" class="cta-button">اشترك الآن</a>
             </div>
-            <div class="absolute top-1/4 left-16 w-12 h-12 bg-turbo-gold opacity-10 rotate-45 animate-spin"
-                style="animation-duration: 25s;"></div>
-            <div
-                class="absolute bottom-1/3 right-1/4 w-8 h-8 border border-turbo-gold opacity-20 transform rotate-12 animate-bounce">
-            </div>
-            <div class="absolute top-1/2 left-8 w-6 h-6 bg-turbo-gold opacity-25 rounded-full animate-ping"></div>
-            <div
-                class="absolute bottom-1/4 left-1/3 w-8 h-8 border-2 border-turbo-gold opacity-15 transform rotate-45 animate-pulse">
-            </div>
-            <div class="absolute top-1/3 right-1/3 w-4 h-4 bg-turbo-gold opacity-20 rounded-full animate-bounce"
-                style="animation-delay: 1s;"></div>
-        </div>
-
-        <!-- Compact Hero Layout -->
-        <div class="relative z-10 w-full max-w-5xl mx-auto px-4 sm:pt-0 md:pt-0 pt-5">
-            <!-- Logo & Title -->
-            <div class="text-center mb-8">
-                <div class="mb-6">
-                    <img src="static/logo.png" alt="TurboNet Logo"
-                        class="h-16 w-auto filter drop-shadow-2xl mx-auto mb-4">
-                </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-4 leading-tight text-white text-shadow">
-                    مرحباً بكم في عصر
-                    <span
-                        class="text-turbo-gold bg-gradient-to-r from-turbo-gold to-yellow-400 bg-clip-text text-transparent">الإنترنت
-                        السريع</span>
-                </h1>
-                <h2 class="text-xl md:text-2xl font-bold mb-6 text-gray-200 text-shadow">
-                    TurboNet - أسرع إنترنت في البلاد
-                </h2>
-            </div>
-
-            <!-- Compact Stats Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-3xl mx-auto">
-                <div
-                    class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-4 border border-turbo-gold border-opacity-30 hover:bg-opacity-20 transition-all">
-                    <div class="text-center">
-                        <div class="text-2xl">⚡</div>
-                        <div class="text-lg font-bold text-turbo-gold">1000</div>
-                        <div class="text-white text-xs">ميجا</div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-4 border border-turbo-gold border-opacity-30 hover:bg-opacity-20 transition-all">
-                    <div class="text-center">
-                        <div class="text-2xl">👥</div>
-                        <div class="text-lg font-bold text-turbo-gold">5000+</div>
-                        <div class="text-white text-xs">عميل</div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-4 border border-turbo-gold border-opacity-30 hover:bg-opacity-20 transition-all">
-                    <div class="text-center">
-                        <div class="text-2xl">🛠️</div>
-                        <div class="text-lg font-bold text-turbo-gold">24/7</div>
-                        <div class="text-white text-xs">دعم</div>
-                    </div>
-                </div>
-                <div
-                    class="bg-white bg-opacity-10 backdrop-blur-md rounded-xl p-4 border border-turbo-gold border-opacity-30 hover:bg-opacity-20 transition-all">
-                    <div class="text-center">
-                        <div class="text-2xl">🔧</div>
-                        <div class="text-lg font-bold text-turbo-gold">احترافي</div>
-                        <div class="text-white text-xs">تركيب</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main CTA -->
-            <div class="text-center mb-8">
-                <p
-                    class="text-lg md:text-xl mb-6 text-gray-100 leading-relaxed text-shadow font-medium max-w-2xl mx-auto">
-                    مع TurboNet، تجربتك بالإنترنت رح تكون أسرع، أوضح، ومريحة لكل أفراد العائلة
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#packages"
-                        class="bg-turbo-gold text-turbo-dark px-6 py-3 rounded-full font-bold text-lg hover:bg-yellow-400 transition-all pulse-gold shadow-2xl transform hover:scale-105 inline-block">
-                        🚀 اشترك الآن - عرض خاص
-                    </a>
-                    <button
-                        class="border-2 border-turbo-gold text-turbo-gold px-6 py-3 rounded-full font-bold text-lg hover:bg-turbo-gold hover:text-turbo-dark transition-all shadow-2xl">
-                        📞 اتصل بنا *5287
-                    </button>
-                </div>
-            </div>
-
-            <!-- Special Offer Banner -->
-            <div class="text-center">
-                <div
-                    class="inline-block bg-gradient-to-r from-turbo-gold to-yellow-400 text-turbo-dark px-6 py-3 rounded-full font-bold text-lg shadow-2xl animate-pulse transform hover:scale-105 transition-all">
-                    ⚡ عرض خاص: أول 3 أشهر بـ 59 شيقل فقط لأي باقة!
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-turbo-gold animate-bounce">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3">
-                </path>
-            </svg>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="order-2 md:order-1">
-                    <h2 class="text-4xl md:text-5xl font-black mb-6 text-turbo-dark">
-                        لماذا TurboNet؟
-                    </h2>
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                        في عصر التكنولوجيا الحديثة، أصبح الإنترنت السريع ضرورة أساسية للعمل والترفيه والتواصل.
-                        نحن في TurboNet نقدم لكم أفضل خدمات الإنترنت بسرعات عالية وثبات لا مثيل له.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center">
-                                <span class="text-2xl">⚡</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-turbo-dark">سرعة وثبات الإنترنت</h3>
-                                <p class="text-gray-600">سرعات تصل إلى 1000 ميجا مع ثبات 99.9%</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center">
-                                <span class="text-2xl">🛠️</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-turbo-dark">دعم فني متواصل</h3>
-                                <p class="text-gray-600">فريق دعم فني متاح 24/7 لحل أي مشكلة</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center">
-                                <span class="text-2xl">🔧</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-turbo-dark">تركيب احترافي وسريع</h3>
-                                <p class="text-gray-600">تركيب مجاني ومرونة في اختيار الراوتر</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center">
-                                <span class="text-2xl">👨‍👩‍👧‍👦</span>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-turbo-dark">باقات تلائم كل أفراد العائلة</h3>
-                                <p class="text-gray-600">خيارات متنوعة تناسب احتياجات الجميع</p>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">لماذا TurboNet؟</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>سرعة فائقة</h3>
+                    <p>اتصال بسرعة تصل إلى 1000 ميجابت في الثانية مع تقنية الألياف البصرية المتطورة</p>
                 </div>
-                <div class="order-1 md:order-2">
-                    <img src="image.jpg" alt="أهمية الإنترنت"
-                        class="hidden sm:block w-full h-auto rounded-2xl shadow-2xl">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>أمان متقدم</h3>
+                    <p>حماية شاملة لبياناتك مع تشفير من الدرجة العسكرية وحماية من التهديدات السيبرانية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <h3>دعم 24/7</h3>
+                    <p>فريق دعم فني متخصص متاح على مدار الساعة لحل جميع مشاكلك التقنية</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>أسعار تنافسية</h3>
+                    <p>باقات متنوعة بأسعار مناسبة لجميع الاحتياجات والميزانيات</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>تغطية شاملة</h3>
+                    <p>شبكة واسعة تغطي جميع أنحاء البلاد مع توسع مستمر</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>استقرار الاتصال</h3>
+                    <p>اتصال مستقر وموثوق بنسبة تشغيل 99.9% مع ضمان الجودة</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Special Offer Banner -->
-    <section class="bg-turbo-gold py-6">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-2xl md:text-3xl font-black text-turbo-dark">
-                🎉 عرض خاص: أول ٣ أشهر فقط 59 شيقل/شهر لأي باقة! 🎉
-            </h2>
-        </div>
-    </section>
-
-    <!-- Packages Section -->
-    <section id="packages" class="py-20 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <img src="static/logo.png" alt="TurboNet Logo"
-                    class="mx-auto h-16 w-auto mb-8">
-                <h2 class="text-4xl md:text-5xl font-black mb-4 text-gray-800">
-                    باقاتنا المميزة
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    اختر الباقة التي تناسب احتياجاتك واستمتع بأسرع إنترنت في البلاد
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <!-- Package 1: 200MB -->
-                <div
-                    class="bg-gray-900 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all hover:scale-105 border-2 border-gray-700 hover:border-turbo-gold">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-turbo-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl font-bold text-black">⚡</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 text-white">باقة البداية</h3>
-                        <div class="text-4xl font-black text-turbo-gold mb-2">200</div>
-                        <div class="text-lg text-gray-400 mb-6">ميجا بت/ثانية</div>
-
-                        <div class="mb-6">
-                            <div class="text-3xl font-bold text-white mb-2">₪119</div>
-                            <div class="text-sm text-gray-500 line-through mb-1">السعر العادي</div>
-                            <div class="bg-turbo-gold text-black px-3 py-1 rounded-full text-sm font-bold inline-block">
-                                أول 3 أشهر: ₪59
-                            </div>
-                        </div>
-
-                        <ul class="text-right space-y-3 mb-8">
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">مثالية للاستخدام المنزلي</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">تصفح سريع ومشاهدة فيديو</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">دعم فني 24/7</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                        </ul>
-
-                        <a href="https://wa.me/+972733228300?text=مرحباً، أنا مهتم بباقة البداية (200 ميجا بت/ثانية) بسعر ₪119. أرجو التواصل معي لإتمام الاشتراك."
-                            target="_blank"
-                            class="block w-full bg-turbo-gold text-black py-3 rounded-full font-bold hover:bg-yellow-400 transition-all text-center">
-                            اختر هذه الباقة
-                        </a>
-                    </div>
+    <!-- Plans Section -->
+    <section class="plans" id="plans">
+        <div class="container">
+            <h2 class="section-title">باقاتنا المميزة</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 class="plan-name">الباقة الأساسية</h3>
+                    <div class="plan-price">299 ج.م</div>
+                    <div class="plan-period">شهرياً</div>
+                    <ul class="plan-features">
+                        <li>سرعة تحميل: 100 ميجابت/ث</li>
+                        <li>سرعة رفع: 50 ميجابت/ث</li>
+                        <li>بيانات غير محدودة</li>
+                        <li>دعم فني أساسي</li>
+                        <li>راوتر مجاني</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">اختر هذه الباقة</a>
                 </div>
-
-                <!-- Package 2: 500MB -->
-                <div
-                    class="bg-gray-900 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all hover:scale-105 border-2 border-turbo-gold relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <span class="bg-turbo-gold text-black px-4 py-2 rounded-full text-sm font-bold">
-                            الأكثر شعبية
-                        </span>
-                    </div>
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-turbo-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl font-bold text-black">🚀</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 text-white">باقة العائلة</h3>
-                        <div class="text-4xl font-black text-turbo-gold mb-2">500</div>
-                        <div class="text-lg text-gray-400 mb-6">ميجا بت/ثانية</div>
-
-                        <div class="mb-6">
-                            <div class="text-3xl font-bold text-white mb-2">₪129</div>
-                            <div class="text-sm text-gray-500 line-through mb-1">السعر العادي</div>
-                            <div class="bg-turbo-gold text-black px-3 py-1 rounded-full text-sm font-bold inline-block">
-                                أول 3 أشهر: ₪59
-                            </div>
-                        </div>
-
-                        <ul class="text-right space-y-3 mb-8">
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">مثالية للعائلات الكبيرة</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">ألعاب أونلاين بدون تقطيع</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">مؤتمرات فيديو عالية الجودة</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                        </ul>
-
-                        <a href="https://wa.me/+972733228300?text=مرحباً، أنا مهتم بباقة العائلة (500 ميجا بت/ثانية) بسعر ₪129. أرجو التواصل معي لإتمام الاشتراك."
-                            target="_blank"
-                            class="block w-full bg-turbo-gold text-black py-3 rounded-full font-bold hover:bg-yellow-400 transition-all pulse-gold text-center">
-                            اختر هذه الباقة
-                        </a>
-                    </div>
+                
+                <div class="plan-card featured">
+                    <h3 class="plan-name">الباقة المتقدمة</h3>
+                    <div class="plan-price">499 ج.م</div>
+                    <div class="plan-period">شهرياً</div>
+                    <ul class="plan-features">
+                        <li>سرعة تحميل: 300 ميجابت/ث</li>
+                        <li>سرعة رفع: 150 ميجابت/ث</li>
+                        <li>بيانات غير محدودة</li>
+                        <li>دعم فني متقدم</li>
+                        <li>راوتر متطور مجاني</li>
+                        <li>حماية إضافية</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">الأكثر شعبية</a>
                 </div>
-
-                <!-- Package 3: 1000MB -->
-                <div
-                    class="bg-gray-900 rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all hover:scale-105 border-2 border-gray-700 hover:border-turbo-gold">
-                    <div class="text-center">
-                        <div class="w-16 h-16 bg-turbo-gold rounded-full flex items-center justify-center mx-auto mb-6">
-                            <span class="text-2xl font-bold text-black">⭐</span>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-2 text-white">باقة الأعمال</h3>
-                        <div class="text-4xl font-black text-turbo-gold mb-2">1000</div>
-                        <div class="text-lg text-gray-400 mb-6">ميجا بت/ثانية</div>
-
-                        <div class="mb-6">
-                            <div class="text-3xl font-bold text-white mb-2">₪149</div>
-                            <div class="text-sm text-gray-500 line-through mb-1">السعر العادي</div>
-                            <div class="bg-turbo-gold text-black px-3 py-1 rounded-full text-sm font-bold inline-block">
-                                أول 3 أشهر: ₪59
-                            </div>
-                        </div>
-
-                        <ul class="text-right space-y-3 mb-8">
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">أقصى سرعة متاحة</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">مثالية للشركات والمكاتب</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                            <li class="flex items-center justify-end gap-2">
-                                <span class="text-gray-300">أولوية في الدعم الفني</span>
-                                <span class="text-turbo-gold">✓</span>
-                            </li>
-                        </ul>
-
-                        <a href="https://wa.me/+972733228300?text=مرحباً، أنا مهتم بباقة الأعمال (1000 ميجا بت/ثانية) بسعر ₪149. أرجو التواصل معي لإتمام الاشتراك."
-                            target="_blank"
-                            class="block w-full bg-turbo-gold text-black py-3 rounded-full font-bold hover:bg-yellow-400 transition-all text-center">
-                            اختر هذه الباقة
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Additional Services -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black text-turbo-dark mb-4">
-                    خدمات إضافية
-                </h2>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Installation -->
-                <div class="bg-turbo-gray rounded-3xl p-8 text-center">
-                    <div class="bg-turbo-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-turbo-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-turbo-dark mb-4">التركيب</h3>
-                    <div class="text-3xl font-bold text-turbo-gold mb-2">200 شيقل</div>
-                    <p class="text-gray-600">تركيب احترافي مع ضمان الجودة</p>
-                </div>
-
-                <!-- Router Options -->
-                <div class="bg-turbo-gray rounded-3xl p-8 text-center">
-                    <div class="bg-turbo-gold w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-turbo-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-turbo-dark mb-4">الراوتر</h3>
-                    <div class="space-y-4">
-                        <div>
-                            <div class="text-xl font-bold text-turbo-dark">إيجار: 20 شيقل/شهر</div>
-                        </div>
-                        <div class="text-gray-400">أو</div>
-                        <div>
-                            <div class="text-xl font-bold text-turbo-dark">شراء: 500 شيقل</div>
-                            <div class="text-sm text-gray-600">مع 3 سنوات كفالة</div>
-                        </div>
-                    </div>
+                
+                <div class="plan-card">
+                    <h3 class="plan-name">الباقة الاحترافية</h3>
+                    <div class="plan-price">799 ج.م</div>
+                    <div class="plan-period">شهرياً</div>
+                    <ul class="plan-features">
+                        <li>سرعة تحميل: 1000 ميجابت/ث</li>
+                        <li>سرعة رفع: 500 ميجابت/ث</li>
+                        <li>بيانات غير محدودة</li>
+                        <li>دعم فني مخصص 24/7</li>
+                        <li>راوتر احترافي مجاني</li>
+                        <li>حماية شاملة</li>
+                        <li>IP ثابت</li>
+                    </ul>
+                    <a href="#contact" class="cta-button">اختر هذه الباقة</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black mb-4 text-turbo-dark">
-                    تواصل معنا
-                </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                    فريقنا جاهز لخدمتكم على مدار الساعة
-                </p>
-            </div>
-
-            <!-- Quick Contact Banner -->
-            <div class="bg-turbo-gold text-black rounded-2xl p-8 mb-12 text-center">
-                <h3 class="text-3xl font-black mb-4">اتصل الآن للاشتراك!</h3>
-                <div class="text-6xl font-black mb-4">*5287</div>
-                <p class="text-lg font-bold">اتصل من أي خط  مجاناً</p>
-                <p class="text-sm mt-2">خدمة عملاء 24/7 • استشارة مجانية • عروض حصرية</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="text-center p-6">
-                    <a href="tel:*5287" class="block hover:transform hover:scale-105 transition-all">
-                        <div
-                            class="w-16 h-16 bg-turbo-gold rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-yellow-400">
-                            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                </path>
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-turbo-dark mb-2">اتصل بنا</h3>
-                        <p class="text-gray-600 mb-2 font-bold">*5287 (مجاني)</p>
-                        <p class="text-gray-600">073-322-8300</p>
-                    </a>
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">تواصل معنا</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>معلومات التواصل</h3>
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>16287</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>info@turbonet.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>القاهرة، مصر</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🕒</span>
+                        <span>متاح 24/7</span>
+                    </div>
                 </div>
-
-                <div class="text-center p-6">
-                    <a href="https://wa.me/+972733228300" target="_blank"
-                        class="block hover:transform hover:scale-105 transition-all">
-                        <div
-                            class="w-16 h-16 bg-turbo-gold rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-yellow-400">
-                            <svg class="w-8 h-8 text-black" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.488" />
-                            </svg>
+                
+                <div class="contact-form">
+                    <h3>أرسل لنا رسالة</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">الاسم</label>
+                            <input type="text" id="name" name="name" required>
                         </div>
-                        <h3 class="text-xl font-bold text-turbo-dark mb-2">واتساب</h3>
-                        <p class="text-gray-600 mb-2">رسائل فورية</p>
-                        <p class="text-gray-600 font-bold">073-322-8300</p>
-                    </a>
-                </div>
-
-                <div class="text-center p-6">
-                    <a href="https://maps.google.com/?q=أم+الفحم+ " target="_blank"
-                        class="block hover:transform hover:scale-105 transition-all">
-                        <div
-                            class="w-16 h-16 bg-turbo-gold rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-yellow-400">
-                            <svg class="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                </path>
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني</label>
+                            <input type="email" id="email" name="email" required>
                         </div>
-                        <h3 class="text-xl font-bold text-turbo-dark mb-2">زيارة المكتب</h3>
-                        <p class="text-gray-600 mb-2">أم الفحم</p>
-                        <p class="text-gray-600">حي الشاغور</p>
-                    </a>
+                        <div class="form-group">
+                            <label for="phone">رقم الهاتف</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">الرسالة</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">إرسال الرسالة</button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-200 text-gray-800 py-16">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="md:col-span-2">
-                    <img src="static/logo.png" alt="TurboNet Logo"
-                        class="h-16 w-auto mb-6">
-                    <p class="text-gray-600 mb-6 leading-relaxed text-lg">
-                        نحن في TurboNet نقدم أفضل خدمات الإنترنت في   بتقنيات متطورة وأسعار منافسة.
-                        انضم إلى آلاف العملاء الراضين واستمتع بتجربة إنترنت لا مثيل لها.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://www.facebook.com/profile.php?id=61557782815016&sk=photos" target="_blank"
-                            class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center text-black hover:bg-yellow-400 transition-all hover:scale-110"
-                            title="Facebook">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.instagram.com/turbonet2024?igsh=Z2kyazdxZ3ptNTVs" target="_blank"
-                            class="w-12 h-12 bg-turbo-gold rounded-full flex items-center justify-center text-black hover:bg-yellow-400 transition-all hover:scale-110"
-                            title="Instagram">
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TurboNet</h3>
+                    <p>أسرع إنترنت في البلاد مع تقنية متطورة وخدمة عملاء ممتازة</p>
+                </div>
+                <div class="footer-section">
+                    <h3>الخدمات</h3>
+                    <ul>
+                        <li><a href="#">إنترنت منزلي</a></li>
+                        <li><a href="#">إنترنت تجاري</a></li>
+                        <li><a href="#">حلول الشركات</a></li>
+                        <li><a href="#">الدعم التقني</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط مهمة</h3>
+                    <ul>
+                        <li><a href="#">من نحن</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>تابعنا</h3>
+                    <ul>
+                        <li><a href="#">فيسبوك</a></li>
+                        <li><a href="#">تويتر</a></li>
+                        <li><a href="#">إنستغرام</a></li>
+                        <li><a href="#">لينكد إن</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TurboNet. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لك! سنتواصل معك قريباً.');
+        });
+    </script>
+</body>
+</html>
