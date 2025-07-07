@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Lightning bolt icon -->
+  <circle cx="30" cy="30" r="25" fill="url(#goldGradient)" stroke="#333" stroke-width="2"/>
+  <path d="M20 18 L35 18 L28 30 L40 30 L25 42 L32 30 L20 30 Z" fill="#333" stroke="none"/>
+  
+  <!-- TurboNet text -->
+  <text x="65" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#333">
+    TurboNet
+  </text>
+  <text x="65" y="42" font-family="Arial, sans-serif" font-size="12" fill="#666">
+    إنترنت سريع
+  </text>
+</svg>
